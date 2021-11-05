@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Book Flight</string>
+    <string name="roundtrip">Roundtrip</string>
+    <string name="one_way">One way</string>
+    <string name="history">History</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="depart">Depart</string>
+    <string name="return_">Return</string>
+    <string name="passengers">Passengers</string>
+    <string name="max_stops">Maximum number of stops</string>
+    <string name="nonstop">Nonstop</string>
+    <string name="one_stop">One stop</string>
+    <string name="two_or_more">2 or more</string>
+    <string name="search_flights">Search flights</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Log in</string>
+    <string name="signin">Sign in</string>
+    <string name="err_password">Incorrect password</string>
+    <string name="err_user">User not found</string>
+    <string name="err_db">Database error</string>
+    <string name="create_account">Create account</string>
+    <string name="repeat_pass">Repeat password</string>
+    <string name="pass_not_match">Passwords don\'t match</string>
+</resources>

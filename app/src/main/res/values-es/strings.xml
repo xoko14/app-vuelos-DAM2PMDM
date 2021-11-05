@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Reservar Vuelo</string>
+    <string name="roundtrip">Ida y vuelta</string>
+    <string name="one_way">Sólo ida</string>
+    <string name="history">Historial</string>
+    <string name="from">Desde</string>
+    <string name="to">Hasta</string>
+    <string name="depart">Salida</string>
+    <string name="return_">Regreso</string>
+    <string name="passengers">Pasajeros</string>
+    <string name="max_stops">Número máximo de paradas</string>
+    <string name="nonstop">Sin paradas</string>
+    <string name="one_stop">Una parada</string>
+    <string name="two_or_more">2 o más</string>
+    <string name="search_flights">Buscar vuelos</string>
+    <string name="username">Nombre</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="signin">Crear cuenta</string>
+    <string name="err_password">Contraseña incorrecta</string>
+    <string name="err_user">Nombre no encontrado</string>
+    <string name="err_db">Error en la base de datos</string>
+    <string name="create_account">Crear cuenta</string>
+    <string name="repeat_pass">Repetir contraseña</string>
+    <string name="pass_not_match">Las contraseñas no coinciden</string>
+</resources>

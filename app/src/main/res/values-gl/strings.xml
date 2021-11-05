@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Reservar Voo</string>
+    <string name="roundtrip">Ida e volta</string>
+    <string name="one_way">Só ida</string>
+    <string name="history">Historial</string>
+    <string name="from">Dende</string>
+    <string name="to">Ata</string>
+    <string name="depart">Saída</string>
+    <string name="return_">Regreso</string>
+    <string name="passengers">Pasaxeiros</string>
+    <string name="max_stops">Número máximo de paradas</string>
+    <string name="nonstop">Sen paradas</string>
+    <string name="one_stop">Unha parada</string>
+    <string name="two_or_more">2 ou máis</string>
+    <string name="search_flights">Buscar voo</string>
+    <string name="username">Nome</string>
+    <string name="password">Contrasinal</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="signin">Crear conta</string>
+    <string name="err_password">Contrasinal incorrecta</string>
+    <string name="err_user">Nome non atopado</string>
+    <string name="err_db">Error na base de datos</string>
+    <string name="create_account">Crear conta</string>
+    <string name="repeat_pass">Repetir contrasinal</string>
+    <string name="pass_not_match">Os contrasinais non coinciden</string>
+</resources>

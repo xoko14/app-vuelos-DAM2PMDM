@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1029250197208",
+    "project_id": "vista-ej13",
+    "storage_bucket": "vista-ej13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029250197208:android:08b24622aa39365498d9ad",
+        "android_client_info": {
+          "package_name": "com.xoquin.vista_ej13"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1029250197208-habr4udutv4d3m8h3u0ousib2jmbrmvn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAVZLUc3uPyK9_mD1fpA0PdNPDs-w7ujg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1029250197208-habr4udutv4d3m8h3u0ousib2jmbrmvn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

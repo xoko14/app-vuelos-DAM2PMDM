@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ActivityBuscar"
+    android:columnCount="3"
+    android:rowCount="7"
+    android:layout_margin="10dp"
+    android:useDefaultMargins="true">
+
+
+
+    <RadioButton
+        android:id="@+id/chkRoundtrip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_row="0"
+        android:layout_gravity="fill_horizontal"
+        android:layout_columnWeight="1"
+        android:text="@string/roundtrip"
+        style="@style/custom_radio"
+        android:checked="true"/>
+    <RadioButton
+        android:id="@+id/chkOneWay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:layout_row="0"
+        android:layout_gravity="fill_horizontal"
+        android:layout_columnWeight="1"
+        android:text="@string/one_way"
+        style="@style/custom_radio"/>
+    <Button
+        android:id="@+id/btnHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="2"
+        android:layout_row="0"
+        android:layout_gravity="fill_horizontal"
+        android:layout_columnWeight="1"
+        android:text="@string/history"
+        android:paddingRight="0dp"
+        android:paddingLeft="0dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_columnSpan="3"
+        android:layout_gravity="fill_horizontal">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtFrom"
+            android:hint="@string/from"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_columnSpan="3"
+        android:layout_gravity="fill_horizontal">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtTo"
+            android:hint="@string/to"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_gravity="fill_horizontal"
+        android:layout_columnWeight="1">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtDepart"
+            android:hint="@string/depart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:drawableEnd="@drawable/ic_baseline_today_24"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layReturn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_gravity="fill_horizontal"
+        android:layout_columnWeight="1">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtReturn"
+            android:hint="@string/return_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:drawableEnd="@drawable/ic_baseline_today_24"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_column="2"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="0dp">
+
+        <ImageButton
+            android:id="@+id/btnMinus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_remove_24"/>
+
+        <TextView
+            android:id="@+id/txtNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="24sp" />
+
+        <ImageButton
+            android:id="@+id/btnPlus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_add_24" />
+    </LinearLayout>
+
+
+
+    <RadioButton
+        android:id="@+id/chkNonstop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:text="@string/nonstop"
+        style="@style/custom_radio"
+        android:checked="true"/>
+    <RadioButton
+        android:id="@+id/chkOneStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:text="@string/one_stop"
+        style="@style/custom_radio"/>
+    <RadioButton
+        android:id="@+id/chk2orMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:text="@string/two_or_more"
+        style="@style/custom_radio"/>
+
+    <Button
+        android:id="@+id/searchFlights"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="3"
+        android:layout_gravity="center"
+        android:text="@string/search_flights"
+        android:drawableEnd="@drawable/ic_baseline_airplane_ticket_24"
+        android:drawableTint="@color/white"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="3">
+        <TextView
+            android:id="@+id/txtLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
+
+</GridLayout>
