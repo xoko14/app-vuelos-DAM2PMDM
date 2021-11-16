@@ -1,17 +1,18 @@
 package com.xoquin.vista_ej13
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.xoquin.vista_ej13.vo.BusquedaVuelo
 
 class ActivityBuscar : AppCompatActivity() {
     private var num = 0
     private var tripType:Int = 0
     private var stopsType:Int = 0
-    private val history: MutableList<BusquedaVuelo> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,11 +87,7 @@ class ActivityBuscar : AppCompatActivity() {
 
         //listener history
         btnHistory.setOnClickListener {
-            var info = ""
-            for(flight in history){
-                info+=flight.toString()+"\n"
-            }
-            txtLog.text = info
+            TODO()
         }
 
         //listener buscar vuelo
@@ -98,9 +95,11 @@ class ActivityBuscar : AppCompatActivity() {
             val trip = findViewById<RadioButton>(tripType).text
             val stops = findViewById<RadioButton>(stopsType).text
 
-            val reserva = BusquedaVuelo(trip.toString(), txtFrom.text.toString(), txtTo.text.toString(), txtDepart.text.toString(), txtReturn.text.toString(), num, stops.toString())
-            history.add(reserva)
-            txtLog.text = reserva.toString()
+            val busqueda = BusquedaVuelo(trip.toString(), txtFrom.text.toString(), txtTo.text.toString(), txtDepart.text.toString(), txtReturn.text.toString(), num, stops.toString())
+
+            val intent = Intent(this, SearchResultsActivity::class.java)
+            intent.putExtra("busqueda", busqueda)
+            startActivity(intent);
         }
     }
 

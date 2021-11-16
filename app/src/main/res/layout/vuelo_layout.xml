@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+    <TextView
+        android:id="@+id/cod_vuelo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VU420"
+        android:layout_marginEnd="10dp"
+        android:textSize="24sp"/>
+    <TextView
+        android:id="@+id/vuelo_salida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AAA"
+        android:textSize="20sp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_arrow_forward_24"
+        app:tint="@color/design_default_color_on_secondary"/>
+    <TextView
+        android:id="@+id/vuelo_llegada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BBB"
+        android:layout_marginEnd="10dp"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/vuelo_timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dd/mm/yyyy HH:MM"
+        android:layout_marginEnd="10dp"/>
+    <TextView
+        android:id="@+id/vuelo_precio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="404€"
+        android:textSize="20sp"/>
+</LinearLayout>
