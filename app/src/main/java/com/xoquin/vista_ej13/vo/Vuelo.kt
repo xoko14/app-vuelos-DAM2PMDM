@@ -6,9 +6,13 @@ class Vuelo(
     val cod: String,
     val salida:String,
     val destino:String,
-    val numPasajeros: Int,
-    val maxPasajeros: Int,
+    val numPasajeros: Long,
+    val maxPasajeros: Long,
     val fechaSalida: Timestamp,
-    val precio: Int,
-)
+    val precio: Long,
+){
+    override fun toString(): String {
+        return "$cod, $precio"
+    }
+}
 
