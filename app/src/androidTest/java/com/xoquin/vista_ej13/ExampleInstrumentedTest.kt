@@ -25,14 +25,4 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.xoquin.vista_ej13", appContext.packageName)
     }
-
-    @Test
-    fun getVuelos(){
-        val vdao = VueloDAO()
-        val vuelos = vdao.getAll()
-        Log.i("VUELO", vuelos.size.toString())
-        vuelos.forEach {
-            Log.i("VUELO", it.toString())
-        }
-    }
 }

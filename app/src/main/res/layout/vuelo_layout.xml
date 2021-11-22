@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_arrow_forward_24"
-        app:tint="@color/design_default_color_on_secondary"/>
+        app:tint="@color/design_default_color_on_primary"/>
     <TextView
         android:id="@+id/vuelo_llegada"
         android:layout_width="wrap_content"
