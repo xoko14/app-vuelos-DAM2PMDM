@@ -13,6 +13,7 @@
         <entry key="..\:/Android Studio Projets/VistaEj13/app/src/main/res/drawable/custom_radio_checked.xml" value="0.23489583333333333" />
         <entry key="..\:/Android Studio Projets/VistaEj13/app/src/main/res/drawable/custom_radio_unchecked.xml" value="0.23489583333333333" />
         <entry key="..\:/Android Studio Projets/VistaEj13/app/src/main/res/drawable/ic_baseline_airplane_ticket_24.xml" value="0.23489583333333333" />
+        <entry key="..\:/Android Studio Projets/VistaEj13/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.22135416666666666" />
         <entry key="..\:/Android Studio Projets/VistaEj13/app/src/main/res/drawable/ic_baseline_local_airport_24.xml" value="0.75" />
         <entry key="..\:/Android Studio Projets/VistaEj13/app/src/main/res/drawable/ic_launcher_background.xml" value="0.23489583333333333" />
         <entry key="..\:/Android Studio Projets/VistaEj13/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.23125" />
@@ -24,6 +25,7 @@
         <entry key="..\:/Android Studio Projets/VistaEj13/app/src/main/res/layout/activity_signin.xml" value="0.33" />
         <entry key="..\:/Android Studio Projets/VistaEj13/app/src/main/res/layout/busqueda_layout.xml" value="0.32653985507246375" />
         <entry key="..\:/Android Studio Projets/VistaEj13/app/src/main/res/layout/vuelo_layout.xml" value="0.3663949275362319" />
+        <entry key="..\:/Android Studio Projets/VistaEj13/app/src/main/res/menu/search_menu.xml" value="0.20520833333333333" />
       </map>
     </option>
   </component>

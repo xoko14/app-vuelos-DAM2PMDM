@@ -18,11 +18,11 @@
         android:layout_height="wrap_content"
         android:text="AAA"
         android:textSize="20sp"/>
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_arrow_forward_24"
-        app:tint="@color/design_default_color_on_primary"/>
+        style="@style/image_text" />
     <TextView
         android:id="@+id/vuelo_llegada"
         android:layout_width="wrap_content"

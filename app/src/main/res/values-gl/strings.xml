@@ -24,4 +24,5 @@
     <string name="create_account">Crear conta</string>
     <string name="repeat_pass">Repetir contrasinal</string>
     <string name="pass_not_match">Os contrasinais non coinciden</string>
+    <string name="bookings">Reservas</string>
 </resources>

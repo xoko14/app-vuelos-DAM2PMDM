@@ -6,4 +6,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/custom_radio_text</item>
     </style>
+    <style name="image_text">
+        <item name="tint">#B3FFFFFF</item>
+    </style>
 </resources>

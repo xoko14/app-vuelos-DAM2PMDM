@@ -23,4 +23,5 @@
     <string name="create_account">Create account</string>
     <string name="repeat_pass">Repeat password</string>
     <string name="pass_not_match">Passwords don\'t match</string>
+    <string name="bookings">Bookings</string>
 </resources>

@@ -2,7 +2,9 @@ package com.xoquin.vista_ej13
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ListView
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ktx.firestore
@@ -25,27 +27,37 @@ class SearchResultsActivity : AppCompatActivity() {
         val departTimestamp = Timestamp(SimpleDateFormat("dd/MM/yyyy").parse(busqueda.depart))
         val departTimestampMax = Timestamp(departTimestamp.seconds+24*60*60, departTimestamp.nanoseconds)
 
-        var results: List<Vuelo>
+        var results: List<Vuelo> = ArrayList()
 
         val lView: ListView = findViewById(R.id.vuelos_list)
+
+        lView.setOnItemClickListener { adapterView, view, i, l ->
+            Toast.makeText(applicationContext, "jaja si ${results[i].cod}", Toast.LENGTH_SHORT).show()
+        }
+
         var lAdapter: VuelosListAdapter
 
-
+        val prg: ProgressBar = findViewById(R.id.progressCircleSearch)
+        prg.visibility = View.VISIBLE
         val vuelosRef = db.collection("vuelos")
         vuelosRef.whereGreaterThanOrEqualTo("fecha_salida", departTimestamp)
             .whereLessThan("fecha_salida", departTimestampMax)
-        vuelosRef.whereEqualTo("salida", busqueda.from)
+            .whereEqualTo("salida", busqueda.from)
             .whereEqualTo("destino", busqueda.to)
             .get()
             .addOnSuccessListener { documents ->
                 results = vueloDAO.convert(documents)
-                lAdapter = VuelosListAdapter(applicationContext, results)
+                lAdapter = VuelosListAdapter(this, results)
                 lView.adapter = lAdapter
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(applicationContext, "u dun goofed", Toast.LENGTH_SHORT).show()
             }
+            .addOnCompleteListener {
+                prg.visibility = View.GONE
+            }
     }
+
 
 
 }
