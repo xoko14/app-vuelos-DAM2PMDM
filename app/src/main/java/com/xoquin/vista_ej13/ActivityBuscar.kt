@@ -1,5 +1,6 @@
 package com.xoquin.vista_ej13
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,12 +8,17 @@ import android.view.View
 import android.widget.*
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.xoquin.vista_ej13.fragments.DatePickerFragment
 import com.xoquin.vista_ej13.vo.BusquedaVuelo
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ActivityBuscar : AppCompatActivity() {
     private var num = 0
     private var tripType:Int = 0
     private var stopsType:Int = 0
+
+    private var date = Date()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +46,9 @@ class ActivityBuscar : AppCompatActivity() {
         val txtFrom: TextInputEditText = findViewById(R.id.txtFrom)
         val txtTo: TextInputEditText = findViewById(R.id.txtTo)
         val txtDepart: TextInputEditText = findViewById(R.id.txtDepart)
+        txtDepart.keyListener = null
         val txtReturn: TextInputEditText = findViewById(R.id.txtReturn)
+        txtReturn.keyListener = null
 
         val txtLog: TextView = findViewById(R.id.txtLog)
 
@@ -100,6 +108,32 @@ class ActivityBuscar : AppCompatActivity() {
             val intent = Intent(this, SearchResultsActivity::class.java)
             intent.putExtra("busqueda", busqueda)
             startActivity(intent);
+        }
+
+        txtDepart.setOnClickListener {
+            val datePicker = DatePickerFragment()
+            datePicker.setOnDateChanged { _, year, month, dayOfMonth ->
+                val c: Calendar = Calendar.getInstance()
+                c.set(Calendar.YEAR, year)
+                c.set(Calendar.MONTH, month)
+                c.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                val sdf = SimpleDateFormat("dd/MM/yyyy")
+                txtDepart.setText(sdf.format(c.time).toString())
+            }
+            datePicker.show(supportFragmentManager, "selector fecha")
+        }
+
+        txtReturn.setOnClickListener {
+            val datePicker = DatePickerFragment()
+            datePicker.setOnDateChanged { _, year, month, dayOfMonth ->
+                val c: Calendar = Calendar.getInstance()
+                c.set(Calendar.YEAR, year)
+                c.set(Calendar.MONTH, month)
+                c.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                val sdf = SimpleDateFormat("dd/MM/yyyy")
+                txtReturn.setText(sdf.format(c.time).toString())
+            }
+            datePicker.show(supportFragmentManager, "selector fecha")
         }
     }
 
