@@ -25,4 +25,14 @@
     <string name="repeat_pass">Repetir contrasinal</string>
     <string name="pass_not_match">Os contrasinais non coinciden</string>
     <string name="bookings">Reservas</string>
+    <string name="add_reminder">Engadir recordatorio</string>
+    <string name="see_airport_depart_maps">Ver aeroporto de saída en Maps</string>
+    <string name="see_airport_landing_maps">Ver aeroporto de chegada en Maps</string>
+    <string name="book_confirmation">Seguro que queres reservar o voo?</string>
+    <string name="yes">Si</string>
+    <string name="no">Non</string>
+    <string name="no_more_than_19">Non pode ser maior que 19</string>
+    <string name="no_less_than_1">Non pode ser menor que 1</string>
+    <string name="booking_num">Reserva nº</string>
+    <string name="total">Total</string>
 </resources>

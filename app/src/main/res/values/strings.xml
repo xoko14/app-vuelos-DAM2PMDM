@@ -24,4 +24,14 @@
     <string name="repeat_pass">Repeat password</string>
     <string name="pass_not_match">Passwords don\'t match</string>
     <string name="bookings">Bookings</string>
+    <string name="add_reminder">Add reminder</string>
+    <string name="see_airport_depart_maps">See depart airport in Maps</string>
+    <string name="see_airport_landing_maps">Se landing airport in Maps</string>
+    <string name="book_confirmation">Are you sure you want to book this flight?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="no_more_than_19">Can\'t be higher than 19</string>
+    <string name="no_less_than_1">Can\'t be lower than 1</string>
+    <string name="booking_num">Booking nº</string>
+    <string name="total">Total</string>
 </resources>

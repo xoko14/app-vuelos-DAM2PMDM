@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/reservaImg"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_baseline_airplane_ticket_24" />
+
+    <TextView
+        android:id="@+id/txtBookNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/reservaImg"
+        android:text="Reserva nº 1521141981656"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/txtFlightCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/reservaImg"
+        android:layout_below="@+id/txtBookNum"
+        android:text="VU420"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/txtPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtFlightCode"
+        android:layout_toEndOf="@id/reservaImg"
+        android:text="Total: 69€"
+        android:textSize="20sp" />
+</RelativeLayout>

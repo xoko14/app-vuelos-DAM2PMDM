@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/itemAddReminder"
+        android:title="@string/add_reminder"/>
+    <item
+        android:id="@+id/itemAirportDepart"
+        android:title="@string/see_airport_depart_maps"/>
+    <item
+        android:id="@+id/itemAirportLand"
+        android:title="@string/see_airport_landing_maps"/>
+</menu>

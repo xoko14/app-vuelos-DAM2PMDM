@@ -5,17 +5,24 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.xoquin.vista_ej13.fragments.DatePickerFragment
+import com.xoquin.vista_ej13.utils.UserSingleton
 import com.xoquin.vista_ej13.vo.BusquedaVuelo
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.system.exitProcess
 
 class ActivityBuscar : AppCompatActivity() {
-    private var num = 0
+    private var db = Firebase.firestore
+
+    private var num = 1
     private var tripType:Int = 0
     private var stopsType:Int = 0
 
@@ -96,7 +103,7 @@ class ActivityBuscar : AppCompatActivity() {
 
         //listener history
         btnHistory.setOnClickListener {
-            TODO()
+            // TODO: 24/11/2021
         }
 
         //listener buscar vuelo
@@ -105,6 +112,22 @@ class ActivityBuscar : AppCompatActivity() {
             val stops = findViewById<RadioButton>(stopsType).text
 
             val busqueda = BusquedaVuelo(trip.toString(), txtFrom.text.toString(), txtTo.text.toString(), txtDepart.text.toString(), txtReturn.text.toString(), num, stops.toString())
+
+            val historial = hashMapOf(
+                "trip" to busqueda.trip,
+                "from" to busqueda.from,
+                "to" to busqueda.to,
+                "depart" to busqueda.depart,
+                "returnT" to busqueda.returnT,
+                "num" to busqueda.num,
+                "stops" to busqueda.stops
+            )
+
+            db.collection("users").document(UserSingleton.username).collection("historial").document(System.currentTimeMillis().toString())
+                .set(historial)
+                .addOnFailureListener {
+                    Toast.makeText(applicationContext, R.string.err_db, Toast.LENGTH_SHORT).show()
+                }
 
             val intent = Intent(this, SearchResultsActivity::class.java)
             intent.putExtra("busqueda", busqueda)
@@ -143,16 +166,26 @@ class ActivityBuscar : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.seeBookings  -> {
+                val intent = Intent(this, ReservasActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     private fun verificarNum(num: Int): Boolean{
         val toast = Toast(applicationContext)
-        if(num<0){
-            toast.setText("No puede ser menor que 0")
+        if(num<1){
+            toast.setText(R.string.no_less_than_1)
             toast.show()
             return true
         }
         if(num>19){
-            toast.setText("No puede ser mayor que 19")
+            toast.setText(R.string.no_more_than_19)
             toast.show()
             return true
         }

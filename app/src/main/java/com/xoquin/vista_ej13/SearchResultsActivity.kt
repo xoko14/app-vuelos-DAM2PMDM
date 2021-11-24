@@ -11,6 +11,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.xoquin.vista_ej13.adapters.VuelosListAdapter
 import com.xoquin.vista_ej13.dao.VueloDAO
+import com.xoquin.vista_ej13.fragments.OptionDialogFragment
+import com.xoquin.vista_ej13.utils.UserSingleton
 import com.xoquin.vista_ej13.vo.BusquedaVuelo
 import com.xoquin.vista_ej13.vo.Vuelo
 import java.text.SimpleDateFormat
@@ -32,7 +34,23 @@ class SearchResultsActivity : AppCompatActivity() {
         val lView: ListView = findViewById(R.id.vuelos_list)
 
         lView.setOnItemClickListener { adapterView, view, i, l ->
-            Toast.makeText(applicationContext, "jaja si ${results[i].cod}", Toast.LENGTH_SHORT).show()
+            val dialog = OptionDialogFragment()
+            val vuelo: Vuelo = results[i]
+            dialog.setPositiveClickListener{_,_ ->
+                val reserva = hashMapOf(
+                    "cod_vuelo" to vuelo.cod,
+                    "precio" to vuelo.precio*busqueda.num,
+                    "num_tickets" to busqueda.num
+                )
+
+                db.collection("users").document(UserSingleton.username).collection("reservas").document(System.currentTimeMillis().toString())
+                    .set(reserva)
+                    .addOnFailureListener {
+                        Toast.makeText(applicationContext, R.string.err_db, Toast.LENGTH_SHORT).show()
+                    }
+            }
+            dialog.setNegativeClickListener{_,_ -> }
+            dialog.show(supportFragmentManager, "confirmation")
         }
 
         var lAdapter: VuelosListAdapter

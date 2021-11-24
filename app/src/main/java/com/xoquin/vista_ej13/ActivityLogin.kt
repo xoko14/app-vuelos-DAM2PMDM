@@ -12,6 +12,7 @@ import android.widget.Toast
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.toxicbakery.bcrypt.Bcrypt
+import com.xoquin.vista_ej13.utils.UserSingleton
 
 class ActivityLogin : AppCompatActivity() {
     private val db = Firebase.firestore
@@ -35,6 +36,7 @@ class ActivityLogin : AppCompatActivity() {
                         Log.i("login", document.get("username").toString())
                         Log.i("login", pass)
                         if(Bcrypt.verify(txtUserPass.text.toString(), pass.toByteArray())) {
+                            UserSingleton.username = txtUserName.text.toString()
                             val intent = Intent(this, ActivityBuscar::class.java)
                             startActivity(intent)
                         }
