@@ -103,7 +103,8 @@ class ActivityBuscar : AppCompatActivity() {
 
         //listener history
         btnHistory.setOnClickListener {
-            // TODO: 24/11/2021
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
         }
 
         //listener buscar vuelo

@@ -13,26 +13,26 @@
 
 
     <RadioButton
-        android:id="@+id/chkRoundtrip"
+        android:id="@+id/chkOneWay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_row="0"
         android:layout_gravity="fill_horizontal"
         android:layout_columnWeight="1"
-        android:text="@string/roundtrip"
+        android:text="@string/one_way"
         style="@style/custom_radio"
         android:checked="true"/>
     <RadioButton
-        android:id="@+id/chkOneWay"
+        android:id="@+id/chkRoundtrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
         android:layout_row="0"
         android:layout_gravity="fill_horizontal"
         android:layout_columnWeight="1"
-        android:text="@string/one_way"
-        style="@style/custom_radio"/>
+        android:text="@string/roundtrip"
+        style="@style/custom_radio" />
     <Button
         android:id="@+id/btnHistory"
         android:layout_width="wrap_content"
@@ -96,7 +96,8 @@
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_gravity="fill_horizontal"
-        android:layout_columnWeight="1">
+        android:layout_columnWeight="1"
+        android:visibility="invisible">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtReturn"
             android:hint="@string/return_"

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VistaEj13">
         <activity
+            android:name=".HistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReservasActivity"
             android:exported="false" />
         <activity

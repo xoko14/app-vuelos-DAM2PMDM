@@ -35,4 +35,6 @@
     <string name="no_less_than_1">No puede ser menor que 1</string>
     <string name="booking_num">Reserva nº</string>
     <string name="total">Total</string>
+    <string name="calendar_title">Vuelo a</string>
+    <string name="passenger_num">Número de pasajeros</string>
 </resources>
