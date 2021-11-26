@@ -118,15 +118,20 @@ class ReservasActivity : AppCompatActivity() {
                     }
             }
             R.id.itemUpgradeClass ->{
-                db.collection("users").document(UserSingleton.username).collection("reservas").document(reservas[info.position].id)
-                    .update("precio", reservas[info.position].precio+100,
-                    "primera_clase", true)
-                    .addOnSuccessListener {
-                        recreate()
-                    }
-                    .addOnFailureListener {
-                        Toast.makeText(this, getString(R.string.err_db), Toast.LENGTH_SHORT).show()
-                    }
+                if(reservas[info.position].primeraClase){
+                    Toast.makeText(this, getString(R.string.already_first_class), Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    db.collection("users").document(UserSingleton.username).collection("reservas").document(reservas[info.position].id)
+                        .update("precio", reservas[info.position].precio+100,
+                            "primera_clase", true)
+                        .addOnSuccessListener {
+                            recreate()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, getString(R.string.err_db), Toast.LENGTH_SHORT).show()
+                        }
+                }
             }
             else -> super.onContextItemSelected(item)
         }
