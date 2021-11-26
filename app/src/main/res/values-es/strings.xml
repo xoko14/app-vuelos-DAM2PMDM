@@ -40,4 +40,6 @@
     <string name="empty_fields_warning">Hay campos en blanco</string>
     <string name="upgrade_first_class">Mejorar a primera clase</string>
     <string name="cancel_flight">Cancelar vuelo</string>
+    <string name="already_first_class">Esta reserva ya es de primera clase</string>
+    <string name="search_results">Resultado de la búsqueda</string>
 </resources>
