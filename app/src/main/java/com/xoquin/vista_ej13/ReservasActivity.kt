@@ -53,6 +53,10 @@ class ReservasActivity : AppCompatActivity() {
                     )
                 }
 
+                if(reservas.size <=0){
+                    findViewById<View>(R.id.nothingFoundReservas).visibility = View.VISIBLE
+                }
+
                 lAdapter = ReservasListAdapter(this, reservas)
                 lView.adapter = lAdapter
             }

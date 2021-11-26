@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".SearchResultsActivity"
     android:orientation="vertical">
+    <include
+        layout="@layout/nothing_found_layout"
+        android:id="@+id/nothingFoundResults"
+        android:visibility="gone"/>
     <ProgressBar
         android:layout_gravity="center"
         android:id="@+id/progressCircleSearch"

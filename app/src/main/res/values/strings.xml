@@ -41,4 +41,8 @@
     <string name="cancel_flight">Cancel flight</string>
     <string name="already_first_class">This booking is already first class</string>
     <string name="search_results">Search results</string>
+    <string name="user_exists">There is an existing user with that username</string>
+    <string name="nothing_found">Nothing found</string>
+    <string name="delete_history">Delete history</string>
+    <string name="booking_success">Flight booked</string>
 </resources>

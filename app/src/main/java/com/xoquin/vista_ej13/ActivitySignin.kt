@@ -31,24 +31,27 @@ class ActivitySignin : AppCompatActivity() {
                     "pass" to String(Bcrypt.hash(txtUserPass.text.toString(), 10))
                 )
 
-                val doc = db.collection("users").document(txtUserName.text.toString())
-                doc.get().addOnSuccessListener {
-                    if (it.exists()){
-                        val toastError: Toast = Toast.makeText(applicationContext, getText(R.string.err_db), Toast.LENGTH_SHORT)
-                        toastError.show()
-                    }
-                }
                 db.collection("users").document(txtUserName.text.toString())
-                    .set(user)
-                    .addOnSuccessListener {
-                        finish()
-                    }
-                    .addOnFailureListener {
-                        val toastError: Toast = Toast.makeText(applicationContext, getText(R.string.err_db), Toast.LENGTH_SHORT)
-                        toastError.show()
-                    }
-                    .addOnCompleteListener {
-                        spnLoad.visibility = View.INVISIBLE
+                    .get()
+                    .addOnSuccessListener {document ->
+                        if(document.exists()){
+                            Toast.makeText(this, getString(R.string.user_exists), Toast.LENGTH_SHORT).show()
+                            spnLoad.visibility = View.INVISIBLE
+                        }
+                        else{
+                            db.collection("users").document(txtUserName.text.toString())
+                                .set(user)
+                                .addOnSuccessListener {
+                                    finish()
+                                }
+                                .addOnFailureListener {
+                                    val toastError: Toast = Toast.makeText(applicationContext, getText(R.string.err_db), Toast.LENGTH_SHORT)
+                                    toastError.show()
+                                }
+                                .addOnCompleteListener {
+                                    spnLoad.visibility = View.INVISIBLE
+                                }
+                        }
                     }
 
             }

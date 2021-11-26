@@ -47,7 +47,10 @@ class SearchResultsActivity : AppCompatActivity() {
                 db.collection("users").document(UserSingleton.username).collection("reservas").document(System.currentTimeMillis().toString())
                     .set(reserva)
                     .addOnFailureListener {
-                        Toast.makeText(applicationContext, R.string.err_db, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, getString(R.string.err_db) , Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnSuccessListener {
+                        Toast.makeText(applicationContext, getString(R.string.booking_success), Toast.LENGTH_SHORT).show()
                     }
             }
             dialog.setNegativeClickListener{_,_ -> }
@@ -66,6 +69,11 @@ class SearchResultsActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { documents ->
                 results = vueloDAO.convert(documents)
+
+                if(results.size <=0){
+                    findViewById<View>(R.id.nothingFoundResults).visibility = View.VISIBLE
+                }
+
                 lAdapter = VuelosListAdapter(this, results)
                 lView.adapter = lAdapter
             }

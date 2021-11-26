@@ -42,4 +42,8 @@
     <string name="cancel_flight">Cancelar voo</string>
     <string name="already_first_class">Esta reserva xa é de primeira clase</string>
     <string name="search_results">Resusltado da búsqueda</string>
+    <string name="user_exists">Xa existe un usuario con ese nome</string>
+    <string name="nothing_found">Non se atopou nada</string>
+    <string name="delete_history">Eliminar historial</string>
+    <string name="booking_success">Voo reservado</string>
 </resources>

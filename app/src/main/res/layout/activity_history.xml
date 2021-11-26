@@ -7,6 +7,10 @@
     tools:context=".HistoryActivity"
     android:orientation="vertical">
 
+    <include
+        layout="@layout/nothing_found_layout"
+        android:id="@+id/nothingFoundHistory"
+        android:visibility="gone"/>
     <ProgressBar
         android:layout_gravity="center"
         android:id="@+id/progressCircleHistory"
