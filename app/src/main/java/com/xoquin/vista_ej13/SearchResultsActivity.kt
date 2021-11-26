@@ -70,7 +70,7 @@ class SearchResultsActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 results = vueloDAO.convert(documents)
 
-                if(results.size <=0){
+                if(results.isEmpty()){
                     findViewById<View>(R.id.nothingFoundResults).visibility = View.VISIBLE
                 }
 

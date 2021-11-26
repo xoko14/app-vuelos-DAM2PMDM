@@ -127,7 +127,7 @@ class ReservasActivity : AppCompatActivity() {
                 }
                 else{
                     db.collection("users").document(UserSingleton.username).collection("reservas").document(reservas[info.position].id)
-                        .update("precio", reservas[info.position].precio+100,
+                        .update("precio", reservas[info.position].precio+(100*reservas[info.position].tickets),
                             "primera_clase", true)
                         .addOnSuccessListener {
                             recreate()
