@@ -22,19 +22,24 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.xoquin.vista_ej13.adapters.ReservasListAdapter
 import com.xoquin.vista_ej13.adapters.VuelosListAdapter
+import com.xoquin.vista_ej13.dao.VueloDAO
+import com.xoquin.vista_ej13.fragments.VueloDialogFragment
 import com.xoquin.vista_ej13.utils.FirebaseUtils
 import com.xoquin.vista_ej13.utils.UserSingleton
 import com.xoquin.vista_ej13.vo.Reserva
+import com.xoquin.vista_ej13.vo.Vuelo
 
 class ReservasActivity : AppCompatActivity() {
     private val db = Firebase.firestore
     private var reservas: MutableList<Reserva> = ArrayList()
+    private var vueloDAO = VueloDAO()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reservas)
 
         val lView: ListView = findViewById(R.id.reservas_list)
+
         registerForContextMenu(lView)
         var lAdapter: ReservasListAdapter
 
@@ -61,6 +66,24 @@ class ReservasActivity : AppCompatActivity() {
                 lView.adapter = lAdapter
             }
             .addOnCompleteListener { prg.visibility = View.GONE }
+
+        lView.setOnItemClickListener { adapterView, view, i, l ->
+            db.collection("vuelos").document(reservas[i].cod)
+                .get()
+                .addOnSuccessListener { document ->
+                    val cod = document.id
+                    val salida = document.get("salida") as String
+                    val destino = document.get("destino") as String
+                    val numPasajeros = document.get("num_pasajeros") as Long
+                    val maxPasajeros = document.get("max_pasajeros") as Long
+                    val fechaSalida = document.getTimestamp("fecha_salida") as Timestamp
+                    val precio = document.get("precio") as Long
+                    val vuelo = Vuelo(cod, salida, destino, numPasajeros, maxPasajeros, fechaSalida, precio)
+
+                    val dialog = VueloDialogFragment(vuelo)
+                    dialog.show(supportFragmentManager, "vuelo")
+                }
+        }
     }
 
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
