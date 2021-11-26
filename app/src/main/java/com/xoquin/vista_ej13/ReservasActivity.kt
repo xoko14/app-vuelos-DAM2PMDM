@@ -10,6 +10,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
+import android.widget.ProgressBar
+import android.widget.Toast
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Timestamp
@@ -36,16 +38,25 @@ class ReservasActivity : AppCompatActivity() {
         registerForContextMenu(lView)
         var lAdapter: ReservasListAdapter
 
+        val prg: ProgressBar = findViewById(R.id.progressCircleReservas)
+        prg.visibility = View.VISIBLE
         db.collection("users").document(UserSingleton.username).collection("reservas")
             .get()
             .addOnSuccessListener { documents ->
                 documents.forEach { document ->
-                    reservas.add(Reserva(document.id, document.getString("cod_vuelo") as String, document.getLong("num_tickets") as Long, document.getLong("precio") as Long))
+                    reservas.add(Reserva(
+                        document.id,
+                        document.getString("cod_vuelo") as String,
+                        document.getLong("num_tickets") as Long,
+                        document.getLong("precio") as Long,
+                        document.getBoolean("primera_clase") as Boolean)
+                    )
                 }
 
                 lAdapter = ReservasListAdapter(this, reservas)
                 lView.adapter = lAdapter
             }
+            .addOnCompleteListener { prg.visibility = View.GONE }
     }
 
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
@@ -94,6 +105,27 @@ class ReservasActivity : AppCompatActivity() {
                                 val intent = Intent(Intent.ACTION_VIEW , uri)
                                 startActivity(intent)
                             }
+                    }
+            }
+            R.id.itemCancelFlight ->{
+                db.collection("users").document(UserSingleton.username).collection("reservas").document(reservas[info.position].id)
+                    .delete()
+                    .addOnSuccessListener {
+                        recreate()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, getString(R.string.err_db), Toast.LENGTH_SHORT).show()
+                    }
+            }
+            R.id.itemUpgradeClass ->{
+                db.collection("users").document(UserSingleton.username).collection("reservas").document(reservas[info.position].id)
+                    .update("precio", reservas[info.position].precio+100,
+                    "primera_clase", true)
+                    .addOnSuccessListener {
+                        recreate()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, getString(R.string.err_db), Toast.LENGTH_SHORT).show()
                     }
             }
             else -> super.onContextItemSelected(item)

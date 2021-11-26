@@ -112,27 +112,43 @@ class ActivityBuscar : AppCompatActivity() {
             val trip = findViewById<RadioButton>(tripType).text
             val stops = findViewById<RadioButton>(stopsType).text
 
-            val busqueda = BusquedaVuelo(trip.toString(), txtFrom.text.toString(), txtTo.text.toString(), txtDepart.text.toString(), txtReturn.text.toString(), num, stops.toString())
+            if(txtDepart.text.isNullOrBlank() || txtFrom.text.isNullOrBlank() || txtFrom.text.isNullOrBlank()){
+                Toast.makeText(this, getString(R.string.empty_fields_warning), Toast.LENGTH_SHORT).show()
+            }
+            else {
 
-            val historial = hashMapOf(
-                "trip" to busqueda.trip,
-                "from" to busqueda.from,
-                "to" to busqueda.to,
-                "depart" to busqueda.depart,
-                "returnT" to busqueda.returnT,
-                "num" to busqueda.num,
-                "stops" to busqueda.stops
-            )
+                val busqueda = BusquedaVuelo(
+                    trip.toString(),
+                    txtFrom.text.toString(),
+                    txtTo.text.toString(),
+                    txtDepart.text.toString(),
+                    txtReturn.text.toString(),
+                    num,
+                    stops.toString()
+                )
 
-            db.collection("users").document(UserSingleton.username).collection("historial").document(System.currentTimeMillis().toString())
-                .set(historial)
-                .addOnFailureListener {
-                    Toast.makeText(applicationContext, R.string.err_db, Toast.LENGTH_SHORT).show()
-                }
+                val historial = hashMapOf(
+                    "trip" to busqueda.trip,
+                    "from" to busqueda.from,
+                    "to" to busqueda.to,
+                    "depart" to busqueda.depart,
+                    "returnT" to busqueda.returnT,
+                    "num" to busqueda.num,
+                    "stops" to busqueda.stops
+                )
 
-            val intent = Intent(this, SearchResultsActivity::class.java)
-            intent.putExtra("busqueda", busqueda)
-            startActivity(intent);
+                db.collection("users").document(UserSingleton.username).collection("historial")
+                    .document(System.currentTimeMillis().toString())
+                    .set(historial)
+                    .addOnFailureListener {
+                        Toast.makeText(applicationContext, R.string.err_db, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                val intent = Intent(this, SearchResultsActivity::class.java)
+                intent.putExtra("busqueda", busqueda)
+                startActivity(intent);
+            }
         }
 
         txtDepart.setOnClickListener {

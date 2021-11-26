@@ -37,4 +37,7 @@
     <string name="total">Total</string>
     <string name="calendar_title">Vuelo a</string>
     <string name="passenger_num">Número de pasajeros</string>
+    <string name="empty_fields_warning">Hay campos en blanco</string>
+    <string name="upgrade_first_class">Mejorar a primera clase</string>
+    <string name="cancel_flight">Cancelar vuelo</string>
 </resources>

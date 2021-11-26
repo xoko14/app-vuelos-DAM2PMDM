@@ -9,4 +9,10 @@
     <item
         android:id="@+id/itemAirportLand"
         android:title="@string/see_airport_landing_maps"/>
+    <item
+        android:id="@+id/itemUpgradeClass"
+        android:title="@string/upgrade_first_class"/>
+    <item
+        android:id="@+id/itemCancelFlight"
+        android:title="@string/cancel_flight"/>
 </menu>

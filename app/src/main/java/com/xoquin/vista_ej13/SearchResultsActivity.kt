@@ -40,7 +40,8 @@ class SearchResultsActivity : AppCompatActivity() {
                 val reserva = hashMapOf(
                     "cod_vuelo" to vuelo.cod,
                     "precio" to vuelo.precio*busqueda.num,
-                    "num_tickets" to busqueda.num
+                    "num_tickets" to busqueda.num,
+                    "primera_clase" to false
                 )
 
                 db.collection("users").document(UserSingleton.username).collection("reservas").document(System.currentTimeMillis().toString())
@@ -69,7 +70,7 @@ class SearchResultsActivity : AppCompatActivity() {
                 lView.adapter = lAdapter
             }
             .addOnFailureListener { exception ->
-                Toast.makeText(applicationContext, "u dun goofed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, getString(R.string.err_db), Toast.LENGTH_SHORT).show()
             }
             .addOnCompleteListener {
                 prg.visibility = View.GONE

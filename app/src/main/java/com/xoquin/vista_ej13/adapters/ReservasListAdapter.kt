@@ -1,11 +1,14 @@
 package com.xoquin.vista_ej13.adapters
 
 import android.content.Context
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.xoquin.vista_ej13.R
 import com.xoquin.vista_ej13.utils.FirebaseUtils
 import com.xoquin.vista_ej13.vo.Reserva
@@ -39,6 +42,8 @@ class ReservasListAdapter(
             viewHolder.bookNum = tempView.findViewById(R.id.txtBookNum)
             viewHolder.flightCode = tempView.findViewById(R.id.txtFlightCode)
             viewHolder.price = tempView.findViewById(R.id.txtPrice)
+            viewHolder.reservaImg = tempView.findViewById(R.id.reservaImg)
+
             tempView.tag = viewHolder
         }
         else{
@@ -49,6 +54,11 @@ class ReservasListAdapter(
         "${context.getString(R.string.booking_num)} ${reservas[position].id}".also { viewHolder.bookNum?.text = it }
         viewHolder.flightCode?.text = reservas[position].cod
         "${context.getString(R.string.total)}: ${reservas[position].precio}€".also { viewHolder.price?.text = it }
+
+        if(reservas[position].primeraClase){
+            viewHolder.reservaImg?.setColorFilter(ContextCompat.getColor(context, R.color.premium_yellow), android.graphics.PorterDuff.Mode.SRC_IN);
+        }
+
         return tempView
 
     }
@@ -57,5 +67,8 @@ class ReservasListAdapter(
         var bookNum: TextView? = null,
         var flightCode: TextView? = null,
         var price: TextView? = null,
+        var reservaImg: ImageView? = null,
     )
+
+
 }
