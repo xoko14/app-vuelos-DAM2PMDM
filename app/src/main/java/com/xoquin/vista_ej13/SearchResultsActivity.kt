@@ -7,6 +7,7 @@ import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.xoquin.vista_ej13.adapters.VuelosListAdapter
@@ -63,6 +64,7 @@ class SearchResultsActivity : AppCompatActivity() {
         prg.visibility = View.VISIBLE
 
         db.collection("vuelos").whereGreaterThanOrEqualTo("fecha_salida", departTimestamp)
+            .orderBy("fecha_salida", Query.Direction.ASCENDING)
             .whereLessThan("fecha_salida", departTimestampMax)
             .whereEqualTo("salida", busqueda.from)
             .whereEqualTo("destino", busqueda.to)
