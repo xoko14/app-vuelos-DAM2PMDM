@@ -1,7 +1,6 @@
 package com.xoquin.vista_ej13.adapters
 
 import android.content.Context
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.xoquin.vista_ej13.R
-import com.xoquin.vista_ej13.utils.FirebaseUtils
 import com.xoquin.vista_ej13.vo.Reserva
-import com.xoquin.vista_ej13.vo.Vuelo
 
 class ReservasListAdapter(
     private val context: Context,

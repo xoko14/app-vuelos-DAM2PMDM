@@ -12,19 +12,12 @@ import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.xoquin.vista_ej13.adapters.ReservasListAdapter
-import com.xoquin.vista_ej13.adapters.VuelosListAdapter
-import com.xoquin.vista_ej13.dao.VueloDAO
 import com.xoquin.vista_ej13.fragments.VueloDialogFragment
-import com.xoquin.vista_ej13.utils.FirebaseUtils
 import com.xoquin.vista_ej13.utils.UserSingleton
 import com.xoquin.vista_ej13.vo.Reserva
 import com.xoquin.vista_ej13.vo.Vuelo
@@ -32,7 +25,6 @@ import com.xoquin.vista_ej13.vo.Vuelo
 class ReservasActivity : AppCompatActivity() {
     private val db = Firebase.firestore
     private var reservas: MutableList<Reserva> = ArrayList()
-    private var vueloDAO = VueloDAO()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +59,7 @@ class ReservasActivity : AppCompatActivity() {
             }
             .addOnCompleteListener { prg.visibility = View.GONE }
 
-        lView.setOnItemClickListener { adapterView, view, i, l ->
+        lView.setOnItemClickListener { _, _, i, _ ->
             db.collection("vuelos").document(reservas[i].cod)
                 .get()
                 .addOnSuccessListener { document ->
@@ -93,7 +85,7 @@ class ReservasActivity : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val info: AdapterView.AdapterContextMenuInfo = item.menuInfo as AdapterView.AdapterContextMenuInfo
         when(item.itemId){
-            R.id.itemAddReminder -> {
+            R.id.itemAddReminder -> { //añadir recordatorio a calendario
                 db.collection("vuelos").document(reservas[info.position].cod)
                     .get()
                     .addOnSuccessListener {
@@ -106,7 +98,7 @@ class ReservasActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
             }
-            R.id.itemAirportDepart -> {
+            R.id.itemAirportDepart -> { //ver geolocalización aeropuerto salida
                 db.collection("vuelos").document(reservas[info.position].cod)
                     .get()
                     .addOnSuccessListener { vuelo ->
@@ -120,7 +112,7 @@ class ReservasActivity : AppCompatActivity() {
                             }
                     }
             }
-            R.id.itemAirportLand -> {
+            R.id.itemAirportLand -> { //ver geolocalización aeropuerto llegada
                 db.collection("vuelos").document(reservas[info.position].cod)
                     .get()
                     .addOnSuccessListener { vuelo ->
@@ -134,7 +126,7 @@ class ReservasActivity : AppCompatActivity() {
                             }
                     }
             }
-            R.id.itemCancelFlight ->{
+            R.id.itemCancelFlight ->{ //cancelar vuelo
                 db.collection("users").document(UserSingleton.username).collection("reservas").document(reservas[info.position].id)
                     .delete()
                     .addOnSuccessListener {
@@ -144,7 +136,7 @@ class ReservasActivity : AppCompatActivity() {
                         Toast.makeText(this, getString(R.string.err_db), Toast.LENGTH_SHORT).show()
                     }
             }
-            R.id.itemUpgradeClass ->{
+            R.id.itemUpgradeClass ->{ //mejorar billete a primera clase
                 if(reservas[info.position].primeraClase){
                     Toast.makeText(this, getString(R.string.already_first_class), Toast.LENGTH_SHORT).show()
                 }

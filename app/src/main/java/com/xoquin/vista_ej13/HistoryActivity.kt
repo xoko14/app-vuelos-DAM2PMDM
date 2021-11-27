@@ -12,14 +12,12 @@ import android.widget.Toast
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.xoquin.vista_ej13.adapters.HistorialListAdapter
-import com.xoquin.vista_ej13.adapters.ReservasListAdapter
 import com.xoquin.vista_ej13.utils.UserSingleton
 import com.xoquin.vista_ej13.vo.BusquedaVuelo
-import com.xoquin.vista_ej13.vo.Reserva
 
 class HistoryActivity : AppCompatActivity() {
-    val db = Firebase.firestore
-    val historial: MutableList<BusquedaVuelo> = ArrayList()
+    private val db = Firebase.firestore
+    private val historial: MutableList<BusquedaVuelo> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +25,10 @@ class HistoryActivity : AppCompatActivity() {
 
         val lView: ListView = findViewById(R.id.viewHistory)
 
-        lView.setOnItemClickListener { parent, view, position, id ->
+        lView.setOnItemClickListener { _, _, position, _ ->
             val intent = Intent(this, SearchResultsActivity::class.java)
             intent.putExtra("busqueda", historial[position])
-            startActivity(intent);
+            startActivity(intent)
         }
 
         var lAdapter: HistorialListAdapter
@@ -72,7 +70,7 @@ class HistoryActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
-            R.id.deleteHistory -> {
+            R.id.deleteHistory -> { //eliminar historial
                 db.collection("users").document(UserSingleton.username).collection("historial")
                     .get()
                     .addOnSuccessListener {

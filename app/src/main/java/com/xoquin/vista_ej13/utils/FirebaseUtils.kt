@@ -8,7 +8,7 @@ class FirebaseUtils {
     companion object{
         fun timestampToDate(timestamp: Timestamp): String {
             val milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
-            val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm")
+            val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
             val netDate = Date(milliseconds)
             return sdf.format(netDate).toString()
         }

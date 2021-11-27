@@ -3,21 +3,19 @@ package com.xoquin.vista_ej13.fragments
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.xoquin.vista_ej13.R
-import com.xoquin.vista_ej13.adapters.VuelosListAdapter
 import com.xoquin.vista_ej13.utils.FirebaseUtils
 import com.xoquin.vista_ej13.vo.Vuelo
 
-class VueloDialogFragment(val vuelo: Vuelo): DialogFragment() {
+class VueloDialogFragment(private val vuelo: Vuelo): DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
 
             val viewHolder = ViewHolder()
-            val inflater = requireActivity().layoutInflater;
+            val inflater = requireActivity().layoutInflater
             val tempView = inflater.inflate(R.layout.vuelo_layout, null)
 
             viewHolder.codVuelo = tempView.findViewById(R.id.cod_vuelo)
@@ -31,7 +29,7 @@ class VueloDialogFragment(val vuelo: Vuelo): DialogFragment() {
             viewHolder.vueloSalida?.text = vuelo.salida
             viewHolder.vueloLlegada?.text = vuelo.destino
             viewHolder.vueloTimestamp?.text = FirebaseUtils.timestampToDate(vuelo.fechaSalida)
-            "${vuelo.precio}€".also { viewHolder.vueloPrecio?.text = it }
+            "${vuelo.precio}€".also { text -> viewHolder.vueloPrecio?.text = text }
 
             builder.setView(tempView)
             builder.create()

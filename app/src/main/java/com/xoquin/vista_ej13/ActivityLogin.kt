@@ -52,7 +52,6 @@ class ActivityLogin : AppCompatActivity() {
                     }
                 }
                 .addOnFailureListener {
-                    Log.i("login", "user not found")
                     val toastError: Toast = Toast.makeText(applicationContext, getText(R.string.err_db), Toast.LENGTH_SHORT)
                     toastError.show()
                 }
