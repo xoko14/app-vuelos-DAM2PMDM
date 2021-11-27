@@ -53,7 +53,7 @@ class ReservasListAdapter(
         "${context.getString(R.string.total)} (x${reservas[position].tickets}): ${reservas[position].precio}€".also { viewHolder.price?.text = it }
 
         if(reservas[position].primeraClase){
-            viewHolder.reservaImg?.setColorFilter(ContextCompat.getColor(context, R.color.premium_yellow), android.graphics.PorterDuff.Mode.SRC_IN);
+            viewHolder.reservaImg?.setColorFilter(ContextCompat.getColor(context, R.color.premium_yellow), android.graphics.PorterDuff.Mode.SRC_IN)
         }
 
         return tempView
