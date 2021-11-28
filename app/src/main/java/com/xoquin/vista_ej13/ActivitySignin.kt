@@ -24,40 +24,44 @@ class ActivitySignin : AppCompatActivity() {
 
         val btnCreateAccount: Button = findViewById(R.id.btnCreateAccount)
         btnCreateAccount.setOnClickListener {
-            spnLoad.visibility = View.VISIBLE
-            if(txtUserPass.text.toString() == txtUserPass2.text.toString()){
-                val user = hashMapOf(
-                    "username" to txtUserName.text.toString(),
-                    "pass" to String(Bcrypt.hash(txtUserPass.text.toString(), 10))
-                )
+            if(txtUserName.text.isNullOrBlank()||txtUserPass.text.isNullOrBlank()||txtUserPass2.text.isNullOrBlank()){
+                Toast.makeText(this, getString(R.string.empty_fields_warning), Toast.LENGTH_SHORT).show()
+            } else {
+                spnLoad.visibility = View.VISIBLE
+                if(txtUserPass.text.toString() == txtUserPass2.text.toString()){
+                    val user = hashMapOf(
+                        "username" to txtUserName.text.toString(),
+                        "pass" to String(Bcrypt.hash(txtUserPass.text.toString(), 10))
+                    )
 
-                db.collection("users").document(txtUserName.text.toString())
-                    .get()
-                    .addOnSuccessListener {document ->
-                        if(document.exists()){
-                            Toast.makeText(this, getString(R.string.user_exists), Toast.LENGTH_SHORT).show()
-                            spnLoad.visibility = View.INVISIBLE
+                    db.collection("users").document(txtUserName.text.toString())
+                        .get()
+                        .addOnSuccessListener {document ->
+                            if(document.exists()){
+                                Toast.makeText(this, getString(R.string.user_exists), Toast.LENGTH_SHORT).show()
+                                spnLoad.visibility = View.INVISIBLE
+                            }
+                            else{
+                                db.collection("users").document(txtUserName.text.toString())
+                                    .set(user)
+                                    .addOnSuccessListener {
+                                        finish()
+                                    }
+                                    .addOnFailureListener {
+                                        val toastError: Toast = Toast.makeText(applicationContext, getText(R.string.err_db), Toast.LENGTH_SHORT)
+                                        toastError.show()
+                                    }
+                                    .addOnCompleteListener {
+                                        spnLoad.visibility = View.INVISIBLE
+                                    }
+                            }
                         }
-                        else{
-                            db.collection("users").document(txtUserName.text.toString())
-                                .set(user)
-                                .addOnSuccessListener {
-                                    finish()
-                                }
-                                .addOnFailureListener {
-                                    val toastError: Toast = Toast.makeText(applicationContext, getText(R.string.err_db), Toast.LENGTH_SHORT)
-                                    toastError.show()
-                                }
-                                .addOnCompleteListener {
-                                    spnLoad.visibility = View.INVISIBLE
-                                }
-                        }
-                    }
 
-            }
-            else{
-                val toast = Toast.makeText(applicationContext, getText(R.string.pass_not_match), Toast.LENGTH_SHORT)
-                toast.show()
+                }
+                else{
+                    val toast = Toast.makeText(applicationContext, getText(R.string.pass_not_match), Toast.LENGTH_SHORT)
+                    toast.show()
+                }
             }
         }
     }
