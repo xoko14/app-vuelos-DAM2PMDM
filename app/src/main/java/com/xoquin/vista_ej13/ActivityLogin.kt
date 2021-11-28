@@ -26,39 +26,43 @@ class ActivityLogin : AppCompatActivity() {
 
         val btnLogin: Button = findViewById(R.id.btnLogin)
         btnLogin.setOnClickListener {
-            spnLoad.visibility = View.VISIBLE
-            db.collection("users")
-                .whereEqualTo("username", txtUserName.text.toString())
-                .get()
-                .addOnSuccessListener { documents ->
-                    for(document in documents){
-                        val pass: String = document.getString("pass") as String
-                        Log.i("login", document.get("username").toString())
-                        Log.i("login", pass)
-                        if(Bcrypt.verify(txtUserPass.text.toString(), pass.toByteArray())) {
-                            UserSingleton.username = txtUserName.text.toString()
-                            val intent = Intent(this, ActivityBuscar::class.java)
-                            startActivity(intent)
+            if(txtUserName.text.isNullOrBlank()||txtUserPass.text.isNullOrBlank()){
+                Toast.makeText(this, getString(R.string.empty_fields_warning), Toast.LENGTH_SHORT).show()
+            } else{
+                spnLoad.visibility = View.VISIBLE
+                db.collection("users")
+                    .whereEqualTo("username", txtUserName.text.toString())
+                    .get()
+                    .addOnSuccessListener { documents ->
+                        for(document in documents){
+                            val pass: String = document.getString("pass") as String
+                            Log.i("login", document.get("username").toString())
+                            Log.i("login", pass)
+                            if(Bcrypt.verify(txtUserPass.text.toString(), pass.toByteArray())) {
+                                UserSingleton.username = txtUserName.text.toString()
+                                val intent = Intent(this, ActivityBuscar::class.java)
+                                startActivity(intent)
+                            }
+                            else{
+                                val toastError: Toast = Toast.makeText(applicationContext, getText(R.string.err_password), Toast.LENGTH_SHORT)
+                                toastError.show()
+                            }
                         }
-                        else{
-                            val toastError: Toast = Toast.makeText(applicationContext, getText(R.string.err_password), Toast.LENGTH_SHORT)
+
+                        if(documents.isEmpty){
+                            val toastError: Toast = Toast.makeText(applicationContext, getText(R.string.err_user), Toast.LENGTH_SHORT)
                             toastError.show()
                         }
                     }
-
-                    if(documents.isEmpty){
-                        val toastError: Toast = Toast.makeText(applicationContext, getText(R.string.err_user), Toast.LENGTH_SHORT)
+                    .addOnFailureListener {
+                        val toastError: Toast = Toast.makeText(applicationContext, getText(R.string.err_db), Toast.LENGTH_SHORT)
                         toastError.show()
                     }
-                }
-                .addOnFailureListener {
-                    val toastError: Toast = Toast.makeText(applicationContext, getText(R.string.err_db), Toast.LENGTH_SHORT)
-                    toastError.show()
-                }
-                .addOnCompleteListener {
-                    spnLoad.visibility = View.INVISIBLE
+                    .addOnCompleteListener {
+                        spnLoad.visibility = View.INVISIBLE
 
-                }
+                    }
+            }
         }
 
         val btnSignin: Button = findViewById(R.id.btnSignin)
